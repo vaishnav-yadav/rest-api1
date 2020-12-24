@@ -1,15 +1,36 @@
 const express = require("express");
 require("./db/conn"); //requiring the conn.js file
 const Student = require("./models/students");
+const studentRouter = require('./routers/student');
 const app = express();
 
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(studentRouter);
 
-app.get("/", (req, res) => {
-  res.send("hello from the other sides, so you have made a get request ");
-});
+
+//Express Router , first 2 steps in router's student.js
+// 1. create a new router
+// const router = new express.Router();
+
+// 2. we need to define the router
+// router.get('/class', (req,res) =>{
+//     res.send('Hello Class Welcome');
+// })
+
+//3. We need to register our router
+// app.use(router); //we can get the response using localhost:3000/class
+
+
+
+
+
+
+
+
+
+// POST :- 
 
 //now we are adding results directly by posting it from postman by making post request
 

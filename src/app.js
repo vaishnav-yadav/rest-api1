@@ -71,8 +71,16 @@ app.get('/students/:id' , async(req, res)=>{
     try{
         const _id= req.params.id;
         const studentData= await Student.findById({_id: _id});
+
+        if(!studentData){
+            return res.status(404).send();
+        }
+        else
+        {
+
+            res.send(studentData);
+        }
         // console.log(req.params);
-        res.send(studentData);
     }catch(e){
         console.log(e);
     }

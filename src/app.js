@@ -82,6 +82,24 @@ app.get('/students/:id' , async(req, res)=>{
         }
         // console.log(req.params);
     }catch(e){
+        res.status(500).send(e);
         console.log(e);
+    }
+});
+
+
+
+// UPDATE : to update the documents of a collection
+
+app.patch('/students/:id', async(req, res)=>{
+    try{
+        const _id = req.params.id;
+        const updateStudent = await Student.findByIdAndUpdate({_id : _id } , req.body);
+        res.status(200).send(updateStudent);//it will return the updated data , go to the postman and change the data by clicking to body and then click to raw and then change email using json format 
+        //{
+        //     "email" : "vaishnavyadav4444@gmail.com"
+        // } in postman and make patch request , data will be updated 
+    }catch(e) {
+         res.status(404).send(e);
     }
 })

@@ -94,7 +94,9 @@ app.get('/students/:id' , async(req, res)=>{
 app.patch('/students/:id', async(req, res)=>{
     try{
         const _id = req.params.id;
-        const updateStudent = await Student.findByIdAndUpdate({_id : _id } , req.body);
+        const updateStudent = await Student.findByIdAndUpdate({_id : _id } , req.body,{
+            new : true //to see the changes immediately in postman request 
+        });
         res.status(200).send(updateStudent);//it will return the updated data , go to the postman and change the data by clicking to body and then click to raw and then change email using json format 
         //{
         //     "email" : "vaishnavyadav4444@gmail.com"
@@ -102,4 +104,25 @@ app.patch('/students/:id', async(req, res)=>{
     }catch(e) {
          res.status(404).send(e);
     }
+})
+
+
+
+
+//DELETE  : to delete the document or records of a collection
+
+app.delete('/students/:id' , async(req, res)=>{
+    try{
+            const _id = req.params.id;
+            const deleteStudent = await Student.findByIdAndDelete({_id: _id});
+            if(!deleteStudent){
+                return res.status(400).send();
+            }else{
+                res.send(deleteStudent);
+            }
+    }catch(e)
+    {
+        res.status(500).send(e);
+    }
+
 })

@@ -62,3 +62,17 @@ app.get('/students' , async (req, res)=>{
     }
 });
 //you can make get request now from any browser or post man using localhost:3000/students request 
+
+
+
+// get the individual Student data using id
+
+app.get('/students/:id' , async(req, res)=>{
+    try{
+        const _id= req.params;
+        console.log(req.params);
+        res.send(req.params);
+    }catch(e){
+        console.log(e);
+    }
+})

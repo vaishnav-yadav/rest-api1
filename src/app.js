@@ -69,9 +69,10 @@ app.get('/students' , async (req, res)=>{
 
 app.get('/students/:id' , async(req, res)=>{
     try{
-        const _id= req.params;
-        console.log(req.params);
-        res.send(req.params);
+        const _id= req.params.id;
+        const studentData= await Student.findById({_id: _id});
+        // console.log(req.params);
+        res.send(studentData);
     }catch(e){
         console.log(e);
     }

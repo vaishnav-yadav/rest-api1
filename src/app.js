@@ -30,6 +30,7 @@ app.get("/", (req, res) => {
 // });
 
 //post request using async await
+//POST is used to create 
 
 app.post("/students", async (req, res) => {
   try {
@@ -44,3 +45,20 @@ app.post("/students", async (req, res) => {
 app.listen(port, () => {
   console.log(`connection is set up at ${port}`);
 });
+//you can make post request now from any browser or postman using localhost:3000/students request 
+
+
+
+//GET is used to read the data
+
+app.get('/students' , async (req, res)=>{
+    try{
+
+        const studentsData = await Student.find(); //getting users data 
+        res.send(studentsData); //showing users data 
+
+    }catch(e){
+          res.status(400).send(e);
+    }
+});
+//you can make get request now from any browser or post man using localhost:3000/students request 
